@@ -13,10 +13,15 @@ soup = BeautifulSoup(content,'html.parser')
 #h2 = soup.find('h2')
 #print(h2)
 
-#Найти все теги <a> на странице и вывести их содержимое:
+#Найти все ссылки <a> на странице и вывести их содержимое:
 #links = soup.find_all('a')
 #for link in links:
-#   print(link.text)
+#    print(link)
+    #print(link.text)
+    #print(link.get('href'))
+    #print(link.text+link.get('href'))
+
+
 
 # Для поиска рисунка
 """div = soup.find('div', {"class": "event-image"})
@@ -31,7 +36,15 @@ else:
     print('div pas trouve')"""
 
 #recherche le premier 
-div = soup.find_all('div', {"class": "entry-content"})
-print(div[0])
+#div = soup.find_all('div', {"class": "entry-content"})
+#print(div[0])
 
+#.div = soup.
 
+arts = soup.find_all('article', {"class": "post"})
+if arts:
+    for article in arts:
+        header = article.find('h3').text
+        content = article.find('div', {"class": "entry-content"}).text
+        link = article.find('a', {"class": "post-link"}).get('href')
+        print(header + ": " + content + " => " +  link)
